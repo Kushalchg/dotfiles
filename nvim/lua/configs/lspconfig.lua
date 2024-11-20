@@ -4,7 +4,7 @@ require("nvchad.configs.lspconfig").defaults()
 local lspconfig = require "lspconfig"
 
 -- EXAMPLE
-local servers = { "html", "cssls", "tsserver", "eslint", "tailwindcss" }
+local servers = { "html", "cssls", "eslint", "ts_ls", "lua_ls", "tailwindcss", "pyright" }
 local nvlsp = require "nvchad.configs.lspconfig"
 
 -- lsps with default config
@@ -21,7 +21,7 @@ end
 lspconfig.gopls.setup {
   on_attach = nvlsp.on_attach,
   on_init = nvlsp.on_init,
-  filetypes = { "go", "gomod", "gowork", "gotmpl" },
+  filetypes = { "go", "gomod", "gowork", "gotmpl", "gosum" },
   capabilities = nvlsp.capabilities,
   settings = {
     gopls = {

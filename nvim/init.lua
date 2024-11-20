@@ -1,4 +1,4 @@
-vim.g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
+vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
 vim.g.mapleader = " "
 
 -- bootstrap lazy and all plugins
@@ -32,16 +32,6 @@ dofile(vim.g.base46_cache .. "statusline")
 require "options"
 require "nvchad.autocmds"
 
--- Enable relative line numbers
-vim.opt.relativenumber = true
-
-require("telescope").setup {
-  defaults = {
-    file_ignore_patterns = {
-      "node_modules",
-    },
-  },
-}
 
 vim.schedule(function()
   require "mappings"

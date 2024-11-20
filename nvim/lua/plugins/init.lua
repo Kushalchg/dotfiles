@@ -20,6 +20,8 @@ return {
         "vim",
         "lua",
         "vimdoc",
+        "markdown",
+        "markdown_inline",
         "html",
         "css",
         "javascript",
