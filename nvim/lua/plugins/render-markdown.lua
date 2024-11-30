@@ -1,7 +1,7 @@
 return {
   "MeanderingProgrammer/render-markdown.nvim",
   dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- or other dependencies
-  ft = "markdown", -- Load only for markdown files
+  ft = "markdown",                                                               -- Load only for markdown files
   opts = function()
     require("render-markdown").setup {
       heading = {
@@ -140,10 +140,10 @@ return {
         -- Correspond to top(3), delimiter(3), bottom(3), vertical, & horizontal
         -- stylua: ignore
         border = {
-            '┌', '┬', '┐',
-            '├', '┼', '┤',
-            '└', '┴', '┘',
-            '│', '─',
+          '┌', '┬', '┐',
+          '├', '┼', '┤',
+          '└', '┴', '┘',
+          '│', '─',
         },
         -- Gets placed in delimiter row for each column, position is based on alignmnet
         alignment_indicator = "━",
