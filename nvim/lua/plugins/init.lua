@@ -27,6 +27,10 @@ return {
         "javascript",
         "typescript",
         "go",
+        "python",
+        "c",
+        "cpp",
+        "json"
       },
     },
   },

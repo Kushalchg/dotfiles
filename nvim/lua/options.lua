@@ -26,10 +26,21 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 
 
-vim.api.nvim_set_hl(0, "DiagnosticError", { fg = "#FF0000" }) -- Red for LSP errors
-vim.api.nvim_set_hl(0, "DiagnosticWarn", { fg = "#FFA500" })  -- Orange for warnings (formatting errors)
-vim.api.nvim_set_hl(0, "DiagnosticInfo", { fg = "#00FFFF" })  -- Cyan for info
-vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = "#00FF00" })  -- Green for hints
+--custom colorcodes
+vim.api.nvim_set_hl(0, "DiagnosticError", { fg = "#f74a40" })
+vim.api.nvim_set_hl(0, "DiagnosticWarn", { fg = "#FFAA00" })
+vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = "#b34fff" })
+vim.api.nvim_set_hl(0, "DiagnosticInfo", { fg = "#4CAF50" })
+vim.api.nvim_set_hl(0, "Visual", { bg = "#FFFFFF", fg = "#000000" })
+vim.api.nvim_set_hl_ns(0)
+
+
+-- for highlight on yank
+vim.api.nvim_create_autocmd('textyankpost', {
+  callback = function()
+    vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 200 })
+  end,
+})
 
 -- for matchup
 vim.g.matchup_matchparen_offscreen = { method = "popup" }

@@ -1,5 +1,4 @@
--- load defaults i.e lua_lsp
-require("nvchad.configs.lspconfig").defaults()
+-- load defaults i.e lua_lsp require("nvchad.configs.lspconfig").defaults()
 
 local lspconfig = require "lspconfig"
 
@@ -9,47 +8,47 @@ local nvlsp = require "nvchad.configs.lspconfig"
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
-    lspconfig[lsp].setup {
-        on_attach = nvlsp.on_attach,
-        on_init = nvlsp.on_init,
-        capabilities = nvlsp.capabilities,
-    }
+  lspconfig[lsp].setup {
+    on_attach = nvlsp.on_attach,
+    on_init = nvlsp.on_init,
+    capabilities = nvlsp.capabilities,
+  }
 end
 
 -- configuring single server, example:go
 --
 lspconfig.gopls.setup {
-    on_attach = nvlsp.on_attach,
-    on_init = nvlsp.on_init,
-    filetypes = { "go", "gomod", "gowork", "gotmpl", "gosum" },
-    capabilities = nvlsp.capabilities,
-    settings = {
-        gopls = {
-            completeUnimported = true,
-            completeFunctionCalls = true,
-            hoverKind = "FullDocumentation",
-            -- staticcheck=true,(it is expremental)
-            usePlaceholders = true,
-            analyses = {
-                unusedparams = true,
-            },
-        },
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  filetypes = { "go", "gomod", "gowork", "gotmpl", "gosum" },
+  capabilities = nvlsp.capabilities,
+  settings = {
+    gopls = {
+      completeUnimported = true,
+      completeFunctionCalls = true,
+      hoverKind = "FullDocumentation",
+      -- staticcheck=true,(it is expremental)
+      usePlaceholders = true,
+      analyses = {
+        unusedparams = true,
+      },
     },
+  },
 }
 
 --for lua configuration
 lspconfig.lua_ls.setup {
-    on_attach = nvlsp.on_attach,
-    on_init = nvlsp.on_init,
-    capabilities = nvlsp.capabilities,
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { "vim" },
-            },
-            workspace = {
-                library = vim.api.nvim_get_runtime_file("", true),
-            },
-        },
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { "vim" },
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
     },
+  },
 }
