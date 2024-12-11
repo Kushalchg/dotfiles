@@ -1,40 +1,45 @@
-vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
-vim.g.mapleader = " "
+require("config.lazy")
+require("config.mappings")
 
--- bootstrap lazy and all plugins
-local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+vim.opt.fillchars:append({ eob = ' ' })
+vim.opt.textwidth = 80     -- Set text width to 80 columns
+vim.opt.number = true
+vim.opt.colorcolumn = "80" -- Add a visual guide at column 80
+vim.opt.wrap = true
+vim.opt.linebreak = true
+vim.opt.signcolumn = "yes"
+vim.opt.linespace = 4
 
-if not vim.uv.fs_stat(lazypath) then
-  local repo = "https://github.com/folke/lazy.nvim.git"
-  vim.fn.system { "git", "clone", "--filter=blob:none", repo, "--branch=stable", lazypath }
-end
+--setup for specific files
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = { "javascript", "typescript", "lua", "html", "css" },
+--   callback = function()
+--     vim.opt_local.tabstop = 2
+--     vim.opt_local.shiftwidth = 2
+--     vim.opt_local.expandtab = true
+--   end
+-- })
 
-vim.opt.rtp:prepend(lazypath)
-
-local lazy_config = require "configs.lazy"
-
--- load plugins
-require("lazy").setup({
-  {
-    "NvChad/NvChad",
-    lazy = false,
-    branch = "v2.5",
-    import = "nvchad.plugins",
-  },
-
-  { import = "plugins" },
-}, lazy_config)
-
--- load theme
-dofile(vim.g.base46_cache .. "defaults")
-dofile(vim.g.base46_cache .. "statusline")
-
-require "options"
-require "nvchad.autocmds"
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
 
 
-vim.schedule(function()
-  require "mappings"
-end)
+--custom colorcodes
+vim.api.nvim_set_hl(0, "DiagnosticError", { fg = "#f74a40" })
+vim.api.nvim_set_hl(0, "DiagnosticWarn", { fg = "#FFAA00" })
+vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = "#b34fff" })
+vim.api.nvim_set_hl(0, "DiagnosticInfo", { fg = "#4CAF50" })
+vim.api.nvim_set_hl(0, "Visual", { bg = "#FFFFFF", fg = "#000000" })
+vim.api.nvim_set_hl_ns(0)
+
 
 -- for highlight on yank
+vim.api.nvim_create_autocmd('textyankpost', {
+  callback = function()
+    vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 200 })
+  end,
+})
+
+-- for matchup
+vim.g.matchup_matchparen_offscreen = { method = "popup" }

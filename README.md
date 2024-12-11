@@ -1,9 +1,13 @@
-**This repo is supposed to used as config by NvChad users!**
+## Personal Configurateion
 
-- The main nvchad repo (NvChad/NvChad) is used as a plugin by this repo.
-- So you just import its modules , like `require "nvchad.options" , require "nvchad.mappings"`
-- So you can delete the .git from this repo ( when you clone it locally ) or fork it :)
+This is my personal and minimal configuration for nvim,tmux and my bash shell, there is nothing special to see.
 
-# Credits
 
-1) Lazyvim starter https://github.com/LazyVim/starter as nvchad's starter was inspired by Lazyvim's . It made a lot of things easier!
+### What I configured:
+
+- I use nvchad for my nvim configuration and with the help of that I added some extra LSP, and Treesitter and formatter.
+
+- In tmux I just use catppuccin theme and configure it to bare minimum.
+- And in bashrc file, even I don't what's in there. I just write the one bash function to quickely go to my office directory and bunch of exports.
+
+
