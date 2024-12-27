@@ -1,3 +1,4 @@
+vim.opt.termguicolors = true
 require("config.lazy")
 require("config.mappings")
 
@@ -43,3 +44,8 @@ vim.api.nvim_create_autocmd('textyankpost', {
 
 -- for matchup
 vim.g.matchup_matchparen_offscreen = { method = "popup" }
+
+-- Vertical split terminal at the bottom
+vim.keymap.set('n', '<leader>tv', ':botright vsplit | terminal<CR>')
+-- Horizontal split terminal at the bottom
+vim.keymap.set('n', '<leader>th', ':botright split | terminal<CR>')

@@ -1,59 +1,4 @@
 return {
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "L3MON4D3/LuaSnip",
-      "saadparwaiz1/cmp_luasnip",
-    },
-    config = function()
-      local cmp = require("cmp")
-      local luasnip = require("luasnip")
-
-      cmp.setup({
-        snippet = {
-          expand = function(args)
-            luasnip.lsp_expand(args.body)
-          end,
-        },
-
-        mapping = cmp.mapping.preset.insert({
-          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-          ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-Space>'] = cmp.mapping.complete(),
-          ['<C-e>'] = cmp.mapping.abort(),
-          ['<CR>'] = cmp.mapping.confirm({ select = true }),
-          ['<Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump()
-            else
-              fallback()
-            end
-          end, { 'i', 's' }),
-
-          ['<S-Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-              luasnip.jump(-1)
-            else
-              fallback()
-            end
-          end, { 'i', 's' }),
-        }),
-        sources = cmp.config.sources({
-          { name = 'nvim_lsp' },
-          { name = 'luasnip' },
-        }, {
-          { name = 'buffer' },
-        })
-      })
-    end,
-  },
 
   {
     "williamboman/mason.nvim",
@@ -67,7 +12,7 @@ return {
       require("mason-lspconfig").setup({
         ensure_installed = {
           "html", "cssls", "eslint", "ts_ls",
-          "lua_ls", "tailwindcss", "pyright", "gopls"
+          "lua_ls", "tailwindcss", "pyright", "gopls", "clangd"
         },
       })
     end,
@@ -109,6 +54,7 @@ return {
         map("n", "gr", vim.lsp.buf.references, opts "Show references")
       end
 
+      -- local capabilities = require('blink.cmp').get_lsp_capabilities()
       -- Custom capabilities for completion
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
       capabilities.textDocument.completion.completionItem = {
@@ -131,7 +77,7 @@ return {
       -- List of LSP servers
       local servers = {
         "html", "cssls", "eslint",
-        "ts_ls", "tailwindcss", "pyright"
+        "ts_ls", "tailwindcss", "pyright", "clangd"
       }
 
       -- Default setup function
@@ -178,21 +124,4 @@ return {
       }
     end,
   },
-
-  -- setup for code completion
-  -- {
-  --   "hrsh7th/nvim-cmp",
-  --   dependencies = {
-  --     "hrsh7th/cmp-nvim-lsp",
-  --   },
-  --   config = function()
-  --     local cmp = require("cmp")
-  --     cmp.setup {
-  --       sources = cmp.config.sources({
-  --         { name = "nvim_lsp" },
-  --         -- Add other completion sources as needed
-  --       })
-  --     }
-  --   end,
-  -- }
 }

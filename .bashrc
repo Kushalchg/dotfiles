@@ -108,7 +108,8 @@ fi
 #source <(ng completion script)
 
 #adding alias for my note
-alias mynote='nvim Documents/note/note.txt'
+alias mynote='nvim ~/Documents/note/note.txt'
+
 #function which take me into the company diredctory
 cq() {
     if [ -z "$1" ]; then
@@ -118,11 +119,20 @@ cq() {
     fi
 }
 
+#function which take me into the practice directory
+practice(){
+  if [ -z "$1" ]; then
+    cd ~/Documents/Practice
+  else
+    cd ~/Documents/Practice/"$1"
+  fi
+}
+
 # ebable vim keybinds on terminal
 set -o vi
 
 #all path exports
-
+export EDITOR=vim
 export ANDROID_HOME=/home/kushal/Android-SDK
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 export PATH=$PATH:/opt/gradle/gradle-8.3/bin
