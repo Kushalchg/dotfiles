@@ -25,6 +25,30 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = { "text", "markdown", "latex" },
+--   callback = function()
+--     vim.opt_local.spell = true
+--     vim.opt_local.spelllang = "en_us"
+--   end,
+-- })
+
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = "*",
+--   callback = function()
+--     vim.api.nvim_create_autocmd("Syntax", {
+--       buffer = vim.api.nvim_get_current_buf(),
+--       callback = function()
+--         -- Enable spell checking only for comments
+--         vim.cmd("syntax spell toplevel")
+--         vim.cmd("syntax enable")
+--       end,
+--     })
+--
+--     vim.opt_local.spell = true        -- Enable spell checking
+--     vim.opt_local.spelllang = "en_us" -- Set spell language to English (US)
+--   end,
+-- })
 
 --custom colorcodes
 vim.api.nvim_set_hl(0, "DiagnosticError", { fg = "#f74a40" })

@@ -11,7 +11,7 @@ return {
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
-          "html", "cssls", "eslint", "ts_ls",
+          "html", "cssls", "ts_ls",
           "lua_ls", "tailwindcss", "pyright", "gopls", "clangd"
         },
       })
@@ -76,7 +76,7 @@ return {
       }
       -- List of LSP servers
       local servers = {
-        "html", "cssls", "eslint",
+        "html", "cssls",
         "ts_ls", "tailwindcss", "pyright", "clangd"
       }
 
@@ -95,6 +95,8 @@ return {
 
       -- Lua Language Server with custom configuration
       lspconfig.lua_ls.setup {
+        on_attach = on_attach,
+        capabilities = capabilities,
         settings = {
           Lua = {
             diagnostics = {
@@ -108,11 +110,14 @@ return {
       }
 
       -- Go Language Server with detailed configuration
+
       lspconfig.gopls.setup {
+        on_attach = on_attach,
+        capabilities = capabilities,
         filetypes = { "go", "gomod", "gowork", "gotmpl", "gosum" },
         settings = {
           gopls = {
-            completeUnimported = true,
+            -- completeUnimported = true,
             completeFunctionCalls = true,
             hoverKind = "FullDocumentation",
             usePlaceholders = true,

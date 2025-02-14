@@ -1,7 +1,10 @@
 local map = vim.keymap.set
 
 vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>")
+
 vim.keymap.set("i", "jj", "<esc>")
+
+
 --for systemclipboard plus
 vim.opt.clipboard = "unnamedplus"
 vim.opt.number = true
@@ -47,3 +50,14 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selected text up" })
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selected text down" })
 vim.keymap.set("v", "L", ">gv", { desc = "Indent selected text", silent = true })
 vim.keymap.set("v", "H", "<gv", { desc = "Outdent selected text", silent = true })
+
+--for quickfix mapping
+-- vim.keymap.set('n', 'qf', ":copen<CR>", { desc = 'Opening quickfix menu' })
+vim.keymap.set('n', 'qn', "<cmd>cnext<CR>", { desc = 'Go to next item in quickfix' })
+vim.keymap.set('n', 'qp', "<cmd>cprevious<CR>", { desc = 'Go to previous item in quickfix' })
+vim.keymap.set('n', '<leader>qw', function()
+  local word = vim.fn.expand('<cword>')
+  local command = string.format('silent grep! -w %s', word)
+  vim.cmd(command)
+  -- vim.cmd('copen')
+end, { desc = 'Search word under cursor to quickfix' })

@@ -24,50 +24,6 @@ vim.g.maplocalleader = "\\"
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
-    {
-      "rose-pine/neovim",
-      name = "rose-pine-moon",
-      config = function()
-        require("rose-pine").setup({
-          styles = {
-            bold = true,
-            italic = false,
-            transparency = true,
-          },
-          palette = {
-            -- Override the builtin palette per variant
-            moon = {
-              base = '#000000',
-              overlay = '#282828',
-            },
-          },
-          enable = {
-            terminal = true,
-            legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
-            migrations = true,        -- Handle deprecated options automatically
-          },
-        })
-        vim.cmd("colorscheme rose-pine-moon")
-      end
-    },
-    -- {
-    --     "folke/tokyonight.nvim",
-    --     lazy = false,
-    --     priority = 1000,
-    --     config = function()
-    --         vim.cmd [[colorscheme tokyonight]]
-    --     end
-    -- },
-    -- {
-    --     "catppuccin/nvim",
-    --     name = "catppuccin",
-    --     priority = 1000,
-    --     config = function()
-    --         vim.cmd.colorscheme "catppuccin-mocha"
-    --     end
-    -- },
     { import = "config.plugins" },
   },
-  -- automatically check for plugin updates
-  -- checker = { enabled = true },
 })
