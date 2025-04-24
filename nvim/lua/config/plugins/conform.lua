@@ -7,6 +7,7 @@ return { {
       html = { "prettier" },
       go = { "goimports", "gofmt" },
       c = { "clang-format" },
+      python = { "isort", "black" },
       cpp = { "clang-format" },
       typescript = { "prettier" },
       javascript = { "prettier" },
