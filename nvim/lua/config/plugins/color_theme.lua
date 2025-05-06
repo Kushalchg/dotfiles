@@ -1,11 +1,19 @@
 return {
-  -- {
-  --   "rose-pine/neovim",
-  --   name = "rose-pine",
-  --   config = function()
-  --     vim.cmd("colorscheme rose-pine")
-  --   end
-  -- }
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    config = function()
+      ---@diagnostic disable-next-line: missing-fields
+      require("rose-pine").setup({
+        varient = "main",
+        dark_variant = "main",
+        styles = {
+          italic = false,
+        },
+      })
+      vim.cmd("colorscheme rose-pine")
+    end
+  }
   -- {
   --   "catppuccin/nvim",
   --   name = "catppuccin",
@@ -24,15 +32,17 @@ return {
   --       }
   --     }
   --     vim.cmd.colorscheme "catppuccin"
+  --     for light theme
+  --     vim.cmd.colorscheme "catppuccin-latte"
   --   end
   -- },
-  {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      vim.cmd.colorscheme "tokyonight-night"
-    end
-  }
+  -- {
+  --   "folke/tokyonight.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     vim.cmd.colorscheme "tokyonight-night"
+  --   end
+  -- },
 
 }

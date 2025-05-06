@@ -8,7 +8,7 @@ return {
   config = function()
     require('telescope').setup {
       defaults = {
-        file_ignore_patterns = { "node_modules", "env" },
+        file_ignore_patterns = { "node_modules" },
       }
     }
     vim.keymap.set('n', '<space>en', function()
@@ -25,6 +25,12 @@ return {
     vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
     vim.keymap.set("n", "<leader>f.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
     vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = 'Serach only for git files.' })
+    vim.keymap.set('n', '<leader>d', function()
+      builtin.diagnostics({
+        bufnr = 0,
+      })
+    end, { desc = 'Show WARN diagnostics for current buffer' })
   end
+
 
 }
