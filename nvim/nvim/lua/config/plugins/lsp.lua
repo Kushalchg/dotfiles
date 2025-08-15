@@ -13,7 +13,8 @@ return {
   --       automatic_enable = true,
   --       ensure_installed = {
   --         "html", "cssls", "ts_ls",
-  --         "lua_ls", "tailwindcss", "pyright", "gopls", "clangd"
+  --         "lua_ls", "tailwindcss", "pyright",
+  --         "gopls", "clangd", "kotlin-language-server",
   --       },
   --     })
   --   end,
@@ -33,6 +34,23 @@ return {
       local lspconfig = require("lspconfig")
       local map = vim.keymap.set
 
+      -- Enable inline diagnostics (virtual text) globally
+      vim.diagnostic.config({
+        virtual_text = {
+          -- Customize how diagnostics are displayed inline
+          spacing = 4,        -- Space between code and diagnostic
+          prefix = "●",
+          source = "if_many", -- Show source only if multiple sources
+          format = function(diagnostic)
+            -- Customize the message format
+            return string.format("%s: %s", diagnostic.source, diagnostic.message)
+          end,
+        },
+        float = {
+          border = "rounded", -- Optional: for the floating window
+          source = "always",  -- Show source in floating window
+        },
+      })
       -- Custom on_attach function for key mappings and buffer-specific settings
       local function on_attach(_, bufnr)
         local function opts(desc)
@@ -89,7 +107,8 @@ return {
       -- List of LSP servers
       local servers = {
         "html", "cssls",
-        "ts_ls", "tailwindcss", "pyright", "clangd"
+        "ts_ls", "tailwindcss", "pyright",
+        "clangd", "kotlin_language_server",
       }
 
       -- Default setup function
